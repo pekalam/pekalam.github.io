@@ -1,0 +1,275 @@
+<style>
+    
+    #contCol{
+        background-color: rgb(201,201,201);
+        /*background-color: #607D8B; */
+        background-image: none;
+        height: 100%;
+        overflow: auto;
+    }
+    
+    .MathJax_Display {
+        text-align: center !important;
+     
+    }
+    
+    #eqSolText .MathJax_Display {
+        text-align: left !important;
+     
+    }
+    
+    #exEq .MathJax_Display {
+        text-align: left !important;
+     
+    }
+    
+    #gaussText .MathJax{
+        font-size: 19px;
+    }
+    .gaussText .MathJax{
+        font-size: 19px;
+    }
+
+    #gaussCont{
+        width: 100%;
+
+        -webkit-animation-duration: 1s;
+        position: relative;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    #gaussCont .MathJax{
+        font-size: 42px;
+     
+    }
+    #gaussContB{
+        width: 100%;
+
+        -webkit-animation-duration: 1s;
+        position: relative;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+    #gaussContB .MathJax{
+        font-size: 49px;
+     
+    }
+    #gaussBody{
+        padding-top: 15px;
+        height: 100%;
+    }
+    #eqShow .MathJax{
+        font-size: 46px;
+    }
+    
+    
+    #mathNormal{
+        font-size: 12px;
+    }
+    
+    .equation{
+      /*  display: flex;
+        justify-content:flex-start; */
+
+        margin-bottom: 24px;
+    }
+    .eqInput{
+        
+        width: 42px;
+        height: 32px;
+        font-size: 23px;
+        margin-right: 3px;
+        margin-left: 8px;
+        margin-bottom: 20px;
+        
+        text-align: right;
+        
+    }
+
+    .eqInput:focus{
+       /* background-color: none; */
+    }
+    #eqContainer{
+        margin-top: 50px;
+    }
+    .htmlMath{
+        position: relative;
+        top: 4px;
+        font-weight: bold;
+        font-size: 15px;
+    }
+   
+    .button1{
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    
+    .h100{
+        height: 100%;
+    }
+    .h90{
+        height: 95%;
+    }
+    .mh100{
+        min-height: 100%;
+    }
+    
+    #gaussDef{
+        height: 76%;
+    }
+    
+    #gaussDefWell{
+        height: 100%;
+    }
+    .vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+    
+    
+    #gaussExample{
+        height: 80%;
+     
+    }
+    
+    .shadwell{
+        box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+    
+    #exampleWell{
+        min-height: 90%;
+       margin-bottom: 45px;
+    }
+    
+    #gaussChck{
+        position: absolute;
+    }
+    
+    #inNext{
+       display: block;
+        width: 100px;
+        margin-top: 20px;
+    }
+    #inPrev{
+     width: 100px;
+      display: block;
+    }
+    #homeDef{
+        display: none;
+    }
+    
+    .solution{
+        
+        font-weight: bold;
+        font-size: 20px;
+    
+    }
+    
+    
+</style>
+
+<div id="gaussBody" class="fadeIn animated"> 
+        <div id="charakterystykametody"></div>  
+        <div class="page-header">
+             <h2 class="text-center subpageTitle">Charakterystyka metody</h2>
+        </div>
+        
+        <div id="gaussDef" class="row">
+          
+                
+            <div id="leftCol" class="col-md-12 h100">
+                <div id="gaussDefWell" class="well shadwell" style="overflow: auto;">
+                    <p id="gaussText" class="gaussText contentText" style=""></p>
+                </div>    
+            </div>
+            <div id="rightCol" class="col-md-5 h100" style="display: none;">
+                <div id="rWell" class="well shadwell" style="height: 100%; overflow: auto;">
+                    <p id="rText" class="gaussText contentText"></p>
+                </div>
+            </div>
+            
+        </div>
+        <div id="bar1" style="margin-top: 10px;"></div>
+        <div style="margin-top: 10px;" class="text-center">
+            <button class="btn btn-primary" id="prev"><span class="glyphicon glyphicon-chevron-left"></span> Wstecz</button>
+            <button class="btn btn-primary" id="next">Dalej <span class="glyphicon glyphicon-chevron-right"></span></button>  
+        </div>
+        
+        <div id="rozwiazukladrownan"></div>
+        <h2 class="text-center" style="margin-top: 120px;">Rozwiąż układ równań</h2>
+        <div id="gaussExample" style="" class="row" ng-controller="GaussExampleController as gex">
+            
+            <div class="col-md-12 h100">
+           
+                <div id="exampleWell" class="well shadwell">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <p class="contentText" style="text-indent: 1.50em;">Niniejszy moduł pozwala na rozwiązywanie układów równań metodą eliminacji Gaussa oraz obserwację poszczególnych etapów obliczeniowych tej metody. Rozwiązywany układ równań można zadeklarować z wykorzystaniem wygodnego interfejsu, wprowadzając własne wartości współczynników $a$ oraz wyrazów wolnych lub też losując ich wartości (opcja <b>Losuj</b>). W programie przewidziano możliwość rozwiązywania układów maksymalnie dla $n=$7. <br>Wprowadzanie nowego układu równań wymaga wykonania opcji <b>Czyść</b>. </p>
+                            
+                            
+                         
+                                <div id="eqContainer" style="overflow-x: auto; white-space: nowrap;">                                                 
+                                </div>
+                                    
+                                    
+                                    <p id="solveError" style="color: firebrick; margin: 0;" class="contentText"></p>
+                              
+                                    <div ng-show="gex.solved">
+                                        <p class="contentText" style="color: darkgreen;">Podany układ jest oznaczony. Wartość wyznacznika macierzy <b>A</b> wynosi {{matdet}}. Układ posiada następujące rozwiązanie:</p>
+                                        <div class="text-center" style="font-size: 20px;" ng-repeat="i in gex.solution track by $index">
+                                            <span class="solution">x<sub>{{$index+1}}</sub></span>&nbsp;=&nbsp;<span>{{round(i)}}</span>
+                                        </div> 
+                                    </div>
+                                        
+                                        
+                                        
+                                        
+                        </div>
+                          
+                            
+                            
+                        <div class="col-md-3">
+                            <button class="btn text-center button1" ng-click="gex.addEq()"><span class="glyphicon glyphicon-plus"></span><span> Dodaj równanie</span></button>
+                            <button class="btn text-center button1" ng-click="gex.remEq()"><span class="glyphicon glyphicon-minus"></span><span> Usuń równanie</span></button>
+                            <button ng-click="gex.random()" class="btn btn-success button1">Losuj</button>
+                            <button ng-click="gex.clear()" class="btn btn-danger button1">Czyść</button>
+                            <button ng-click="gex.solve()" class="btn btn-primary button1">Rozwiąż</button>
+                        </div>
+                        
+                    </div>
+                        
+                   
+                    
+                    <div id="showSol" ng-show="gex.solved">
+                        <br/><br/>
+                        
+                        <h3 class="text-center">Tok rozwiązania:</h3><br/><br/>
+       
+                        <div class="text-center" id="eqShow"></div>
+                        </br>
+                        <div>
+                            <p id="eqSolText" class="contentText"></p>
+                        </div>
+                        </br>
+                            
+                        
+                        <div class="text-center">
+                            <button class="btn btn-primary" id="prev2" ng-click="gex.previous()"><span class="glyphicon glyphicon-chevron-left"></span> Wstecz</button>
+                            <button class="btn btn-primary" id="next2" ng-click="gex.next()">Dalej <span class="glyphicon glyphicon-chevron-right"></span></button>
+                        </div>
+                    </div>
+                    
+                    </div>  
+            
+                </div>
+            </div>
+        </div>
+
+    
+ 
+
+<script type="text/javascript" src="partials/gauss/gaussPresentation.js"></script>

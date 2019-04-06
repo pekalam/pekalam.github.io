@@ -1,0 +1,160 @@
+<style>
+    #contCol{
+        background-color: rgb(201,201,201);
+        /*background-color: #607D8B; */
+        background-image: none;
+        height: 100%;
+        overflow: auto;
+    }
+    #integralMain{
+        height: 100%;
+        width: 100%;
+        padding-top: 2%;
+    }
+    .gbox{
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    .pvalid{
+        color : red;
+    }
+    #homeDef{
+        display: none;
+    }
+    .shadwell{
+        box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        overflow: auto;
+    }
+    
+    .MathJax_Display {
+        text-align: center !important;
+     
+    }
+</style>
+
+<div id="integralMain">
+    <div id="calkowaniefunkcjijednejzmiennej"></div>
+    <div class="page-header">
+             <h2 class="text-center subpageTitle">Całkowanie funkcji jednej zmiennej</h2>
+    </div>
+    
+    <ui-view ng-controller="IntegralsDef as intcontr">
+        <div class="row" style="height: 75%;">
+            
+             
+            <div style="height: 100%;">
+                <div class="col-md-12 col-xs-12" style="height: 100%;">
+                    <div class="well shadwell" style="height: 100%;">
+                        <p id="def1Text" class="contentText"></p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div id="bar1" style="margin-top: 10px;"></div>
+        <div class="text-center" style="margin-top: 10px;">
+            <button class="btn btn-primary" id="prev"><span class="glyphicon glyphicon-chevron-left"></span> Wstecz</button>
+            <button class="btn btn-primary" id="next">Dalej <span class="glyphicon glyphicon-chevron-right"></span></button>  
+        </div>
+        </br></br></br>
+
+        <div id="obliczcalke"></div>
+        <h2 class="text-center" style="margin-top: 50px;">Oblicz całkę metodą trapezów</h2>
+        <div class="row" style="height: 80%;">
+            <div style="height: 100%;">
+                <div class="col-md-8" style="height: 100%;">
+                    <div class="well shadwell" style="height: 100%;">
+                        <div id="intGraph1" class="gbox"></div> 
+                    </div>
+                </div>
+                <div class="col-md-4" style="height: 100%;">
+                    <div id="calkiDefWell" class="well shadwell" style="height: 100%;">
+                        
+                        <p class="contentText" style="text-indent: 1.0em; font-size: 14px;">Niniejszy moduł pozwala na obliczanie całek oznaczonych metodą trapezów oraz metodą Simpsona. Realizacja obliczeń musi być poprzedzona wprowadzeniem danych w postaci wzoru funkcji podcałkowej, granicy dolnej i górnej, a także liczby węzłów obliczeniowych w przedziale całkowania (max. 50).  Do wprowadzania nowych danych wymagane jest użycie przycisku <b>Czyść</b>.<br><a ng-click="showInstr()" style="cursor: pointer;">Zobacz instrukcję edytora wzoru funkcji</a></p>
+                        <p class="text-center"><br>Wprowadź funkcję</p>
+                        <input style="width: 100%; margin-bottom: 20px;" type="text" ng-model="data.fx"/>
+                    
+                        <div style="display: block;">
+                            <div class="col-md-6 text-center">
+                                <p class="text-center">Granica dolna $a$</p>
+                                <input type="text" style="width: 50px;" ng-model="data.a"/>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <p class="text-center">Granica górna $b$</p>
+                                <input type="text" style="width: 50px;" ng-model="data.b"/>
+                            </div>
+                        </div>
+                        </br></br>
+                        <p class="text-center" style="margin-top: 30px; margin-bottom: 10px;">Wprowadź liczbę węzłów</p>
+                        
+                        <div class="text-center">
+                            <input id="deltaSlider" type="text" ng-model="data.odst"/>
+                        </div>
+                        
+                        <br>
+                        <p class="contentText text-center" ng-show="solved">Krok całkowania wynosi: {{step}}</p>
+                        <div class="text-center">
+                            <button class=" btn btn-primary" ng-click="test()">Oblicz</button>
+                            <button class=" btn btn-danger" ng-click="clear()">Czyść</button>
+                            <p id="loading" style="display: none; margin-left: 10px;" ></p>
+                        </div>
+                        <p class="pvalid" style="margin-top: 30px;" ng-show="!solved">{{valid}}</p>
+                        <p class="contentText text-center" ng-show="solved" style="margin-top: 30px;">Wartość całki <i>F</i> = {{showData.P}}</p>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </ui-view>
+    </br></br></br>
+    <h2 class="text-center" style="margin-top: 50px;">Oblicz całkę metodą Simpsona</h2>
+    <ui-view ng-controller="Integrals2 as int2">
+        <div class="row" style="height: 80%;" >
+            <div class="col-md-8" style="height: 100%;">
+                <div class="well" style="height: 100%;">
+                    <div id="intGraph2" class="gbox"></div> 
+                    
+                </div>
+            </div>
+            <div class="col-md-4" style="height: 100%;">
+                <div class="well shadwell" style="height: 100%;">
+                    <p class="contentText" style="text-indent: 1.0em;"></p>
+                    <p class="text-center">Wprowadź funkcję</p>
+                        <input style="width: 100%; margin-bottom: 20px;" type="text" ng-model="data.fx"/>
+                    
+                        <div style="display: block;">
+                            <div class="col-md-6 text-center">
+                                <p class="text-center">Granica dolna $a$</p>
+                                <input type="text" style="width: 50px;" ng-model="data.a"/>
+                            </div>
+                            <div class="col-md-6 text-center">
+                                <p class="text-center">Granica górna $b$</p>
+                                <input type="text" style="width: 50px;" ng-model="data.b"/>
+                            </div>
+                        </div>
+                        </br></br>
+                        <p class="text-center" style="margin-top: 30px; margin-bottom: 10px;">Wprowadź liczbę węzłów</p>
+                        
+                        <div class="text-center">
+                            <input id="deltaSlider" type="text" ng-model="data.delta"/>
+                        </div>
+                        
+                        <br>
+                        <p class="contentText text-center" ng-show="solved">Krok całkowania wynosi: {{step}}</p>
+                    <div class="text-center">
+                        <button class="btn btn-primary" ng-click="solve()">Oblicz</button>
+                        <button class="btn btn-danger" ng-click="clear()">Czyść</button>
+                    </div>
+                    <p class="pvalid" style="margin-top: 30px;" ng-show="!solved">{{valid}}</p>
+                    <p class="contentText text-center" ng-show="solved" style="margin-top: 30px;">Wartość całki <i>F</i> = {{P}}</p>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </ui-view>
+    
+</div>

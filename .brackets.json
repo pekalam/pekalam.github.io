@@ -1,0 +1,7 @@
+{
+    "jscodehints.detectedExclusions": [
+        "base/coordselement.js",
+        "/media/marek/PENDRIVE/Strona/bower_components/jsxgraph/src/options.js",
+        "/media/marek/PENDRIVE/Strona/bower_components/jsxgraph/src/loadjsxgraph.js"
+    ]
+}

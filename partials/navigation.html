@@ -1,0 +1,35 @@
+<div style="height: 100%;" ng-controller="NavigationController2 as nav" ng-hide="$parent.incompatible">
+
+
+
+<div class="container">
+    <div class="carousel">
+        <item ng-repeat="n in nav.items" repeat-end>
+            <div class="content" url="{{n.url}}"  ng-style={{n.bgStyle}}>
+                <p id="title">{{n.title}}</p>
+                    
+                <div id="imgcont" ng-style="{{n.imgContStyle}}">
+                    <img id="image" ng-src="{{n.img}}" ng-style="{{n.imgStyle}}"/>
+                </div>
+                <div id="sub">
+                    <p class="menuItem">{{n.s1}}</p>
+                    <p class="menuItem">{{n.s2}}</p>
+                    <p class="menuItem">{{n.s3}}</p>
+                    <p class="menuItem">{{n.s4}}</p>
+                </div>
+            </div>
+        </item>  
+    </div>
+</div>
+
+<!--<button ng-click="prev()">Prev</button>
+<button ng-click="next()">Next</button> -->
+    
+</div>
+
+
+
+
+
+
+

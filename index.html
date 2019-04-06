@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html ng-app="mathpage" ng-controller="TitleController">
+    <head>
+        
+       
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        
+        <title>{{$title.getTitle()}}</title>   
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,700&subset=latin-ext' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Cabin:400,700&subset=latin-ext' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700&subset=latin-ext' rel='stylesheet' type='text/css'>
+
+        <link href='https://fonts.googleapis.com/css?family=Marcellus&subset=latin-ext' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Marcellus+SC&subset=latin-ext' rel='stylesheet' type='text/css'>
+        
+        <link rel="stylesheet" type="text/css" href="css/pagestyle.css">
+        <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/activetext.css">
+        <link rel="stylesheet" type="text/css" href="css/nav.css">
+        <link rel="stylesheet" type="text/css" href="css/lbar.css">
+        <link rel="stylesheet" type="text/css" href="css/smoke.min.css">
+
+        
+        
+        <style>
+            html, body{margin:0;padding:0;height:100%; }
+
+                #sideTab{
+                    padding-left: 0px;
+                    padding-right: 0px;
+                    height: 100%;
+                
+            
+                    background:	#327876;
+                    color: whitesmoke;
+                
+                    font-family: 'Cabin', sans-serif;
+                
+                    font-weight: 700;
+                    overflow: auto;
+                    overflow-x: hidden;
+                }
+                #contCol{
+                    height: 100%;
+                    overflow: hidden;
+                    background-image: url(img/bck.png);    
+                    background-size: cover;
+                }
+            
+            
+            
+            #sideTab h3{
+                cursor: pointer;
+                font-size: 28px;
+            }
+            #sideTab table{
+                /*margin-top: 10px; */
+                padding: 0;
+                height: auto; 
+                width: calc(101%);
+                margin-top: 40px;
+            }
+            #sideTab td{ /* side button */
+                width: 100%;
+                margin: 0;
+                height: 160px;
+                font-family: "Ubuntu", sans-serif;
+                font-weight: 400;
+             
+                cursor: pointer;
+            }
+            #sideTab td:hover:not(.sidebSelected){ /* hover side button */
+                background-color: 	#245150;
+                color: whitesmoke;
+            }
+            .sidebSelected{
+                background-color: rgb(201,201,201);
+                box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.5);
+                 color: rgb(51,51,51);
+            }
+            #mainContent{
+                height: 100%;
+            }
+            .circle{
+                width: 50px;
+                height: 50px;
+                background-color: 	#3b494f;
+                border-radius: 60%;
+                text-align: center;
+                margin-left: calc(50% - 25px);
+                margin-right: calc(50%);
+                margin-bottom: 10px;
+                color: white;
+                position: relative;
+                
+                border-color: white;
+                border-style: solid;
+                border-width: 2px;
+                
+                font-family: 'Ubuntu', sans-serif;
+                font-size: 31px;
+                font-weight: 400;
+            }
+            .vert{
+                position: absolute;               
+                top: 50%;                         
+                transform: translate(0, -50%);
+                text-align: center;
+                width: 100%;
+               
+            }
+            #homeDef{
+                display: block;
+                text-align: justify;
+                line-height: 25px;
+                padding: 20px; 
+                font-size: 15px;
+            }
+           
+            
+            .sideTabFull{
+                position: absolute;
+                width: 100%;
+                z-index: 999;
+                
+            }
+        </style>
+        
+        <script type="text/javascript" src="js/libs/jquery.min.js"></script>
+        <script type="text/javascript" src="js/libs/jquery.scrollTo.min.js"></script>
+        <script type="text/javascript" src="js/libs/jquery.keyframes.min.js"></script>
+             
+        <script type="text/javascript" src="js/libs/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/libs/smoke.min.js"></script>
+        
+   
+        <script type="text/javascript" src="js/libs/math.min.js"></script>
+        <script type="text/javascript" src="js/libs/jsxgraphcore.js"></script>
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+                TeX: {extensions: ["color.js"]},
+                showProcessingMessages: true,
+                "HTML-CSS": {
+                    linebreaks: { automatic: true, width: "container" }          
+                },
+                displayAlign: "left"
+            });
+        </script>
+        <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+        </script>
+        
+        
+        <script type="text/javascript" src="js/libs/lbar.js"></script>
+        <script type="text/javascript" src="js/libs/gauss.js"></script>
+        <script type="text/javascript" src="js/libs/stepAnim.js"></script>
+        <script type="text/javascript" src="partials/nieliniowe/rnlin.js"></script>
+        
+   
+        
+        <script type="text/javascript" src="js/libs/angular.min.js"></script>
+        <script type="text/javascript" src="js/libs/angular-ui-router.min.js"></script>
+        
+        
+    </head>
+    
+    <body ng-controller="MainController as m" class="container-fluid">
+            <div id="mainContent" class="row">
+                <div ng-controller="SidePanelController as scont" id="sideTab" class="col-sm-3 col-md-3 col-lg-3 shadwell" style="position: relative;">
+                    <div class="page-header" style="margin-bottom: 0;">
+                        
+                        <h3 ng-click="home()" class="text-center zoomIn animated"><b>{{$subTitle.getTitle()}}</b></h3>
+                        
+                    </div>
+                    
+                    <p id="homeDef" class="contentText animated slideInLeft" style="text-indent: 2em">Metody numeryczne to dział matematyki, który zajmuje się rozwiązywaniem różnych znanych zagadnień matematycznych za pomocą pewnej skończonej liczby działań arytmetycznych czy też logicznych. Do tego typu działań idealnie nadają się komputery, ponieważ zwykle tych działań jest na tyle dużo, iż wykonowanie ich przez człowieka byłoby bardzo żmudnym, a czasami wręcz niewykonalnym zadaniem.  Stąd też ta dziedzina wiedzy szczególnie zyskała na znaczeniu właśnie dzięki rozwojowi technik komputerowych.<span ng-hide="more">..</span><a style="color: black; cursor: pointer;" ng-click="toogleMore()" ng-hide="more"> więcej</a>
+                    <span ng-show="more"></br>&nbsp;&nbsp;&nbsp;&nbsp;Jak wiadomo, wykonywanie działań arytmetycznych na komputerze wiąże się jednak z pewną niedokładnością, ponieważ przetwarzane liczby są reprezentowane w układach pamięci maszyny ze skończoną precyzją. Ponadto, same metody numeryczne również mogą wprowadzać do obliczeń pewne niedokładności, związane ze sposobem ich funkcjonowania.  Oznacza to, że numeryczne rozwiązanie danego zagadnienia matematycznego może być obarczone pewnym błędem w stosunku do rozwiązania tzw. metodą dokładną, czyli analityczną. Jednak może okazać sie, że obliczenia numeryczne to jedyna droga do uzyskania jakiegokolwiek rozwiązania danego problemu.</br>&nbsp;&nbsp;&nbsp;&nbsp;Przykładowo, skomplikowane równanie nieliniowe lub skomplikowaną całkę można próbować rozwiązać metodami dokładnymi lub numerycznymi. Jednak w tym pierwszym przypadku może okazać się to nie tylko bardzo trudne i żmudne, ale czasami wręcz niewykonalne. Dlatego właśnie między innymi dzięki metodom numerycznym staje się możliwe rozwiązywanie wielu zagadnień praktycznych, opisywanych trudnymi do rozwiązania modelami matematycznymi.Szczególnie cenne jest to, iż obliczenia numeryczne mogą być reprezentowane w postaci odpowiednich algorytmów, a co za tym idzie można je realizować przy użyciu technik komputerowych.</br>&nbsp;&nbsp;&nbsp;&nbsp;Różnorodność współczesnego sprzętu komputerowego i oprogramowania sprawiają, że metody numeryczne to dzisiaj ogrom wiedzy, mającej duże znaczenie w rozwiązywaniu problemów naukowych i technicznych. Opracowując niniejszą aplikację chciałem przedstawić ideę obliczeń jedynie dla wybranych metod numerycznych w zakresie podstawowym. Oprócz prezentacji pewnych zagadnień teoretycznych, aplikacja pozwala na demonstrację działania tychże metod ale również daje możliwość użytkownikowi przeprowadzenia obliczeń numerycznych na dowolnych danych, wprowadzonych z klawiatury. Wydaje się, iż takie możliwości niniejszego serwisu pozwolą początkującemu użytkownikowi ułatwić zrozumienie podstaw tej dziedziny wiedzy. </br></br>&nbsp;&nbsp;&nbsp;&nbsp; Dla tych, którzy chcieliby rozszerzyć i pogłębić swoją wiedzę w tym zakresie polecam znakomite wykłady (niektóre dostępne w Internecie), podręczniki i książki napisane przez polskich nauczycieli akademickich. <a style="color: black; cursor: pointer;" ng-click="toogleMore()" ng-show="more">schowaj</a>
+                    </span>
+                    
+                    </p>
+                    
+                    <div ng-hide="true">{{$blen = buttons.length}}</div>
+                    <div class="col-md-12" style="margin : 0; padding: 0;">
+                        <table>
+                                <tr ng-repeat="b in buttons">
+                                    <td id="{{'b' + b.contentID}}" ng-click="b.click()" class="{{($index === 0 && $blen !== 1) ? 'sidebSelected' : ''}} animated zoomInUp">
+                                        <div style="width: 100%">
+                                            <div ng-show="b.showCircle" class="circle text-center">
+                                                <p class="">{{b.name.charAt(0)}}</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <p class="text-center">{{b.name}}</p>
+                                    </td>
+                                </tr>
+                        </table>
+                    </div>    
+                    
+                </div>
+                <a ng-show="hideMenu" ng-click="toogleMenu()" style="position: fixed; cursor: pointer; color: midnightblue; z-index: 999;">Pokaż menu</a>
+                
+                    <ui-view id="contCol" class="col-md-9 col-xs-9 col-sm-9 col-lg-9 animated fadeIn">
+                    </ui-view>
+                
+            </div>
+
+   
+        <script type="text/javascript" src="js/index/app.js"></script>
+        <!-- Controllers -->
+        <script type="text/javascript" src="partials/nieliniowe/nielinioweController.js"></script>
+        <script type="text/javascript" src="partials/nieliniowe/nielinioweController2.js"></script>
+        <script type="text/javascript" src="partials/gauss/gaussController.js"></script>
+        <script type="text/javascript" src="partials/interpolacja/interController.js"></script>
+        <script type="text/javascript" src="partials/interpolacja/interController2.js"></script>
+        <script type="text/javascript" src="partials/calki/intController.js"></script>
+        <script type="text/javascript" src="partials/calki/intController2.js"></script>
+        <!-- -->
+    </body>
+</html>

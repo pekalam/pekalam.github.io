@@ -1,0 +1,213 @@
+<style>
+    #contCol{
+        background-color: rgb(201,201,201);
+        background-image: none;
+        height: 100%;
+        overflow: auto;
+    }
+    .gbox{
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+
+    #text{
+        -webkit-animation-duration: 1s;
+    }
+    
+    .actext{
+        background: wheat; 
+    }
+    #interNav{
+        float: right;
+    }
+    #textWell{
+        height: 75%;
+        margin-bottom: 10px;
+        overflow: auto; 
+    }
+    
+    #interMain{
+        margin-top: 15px;
+        padding-right: 15px;
+        height: 100%;
+    }
+    #graphWell{
+        padding: 20px;
+        margin-bottom: 0px;
+        height: 80%;
+        position: relative;
+ 
+    }
+    
+  
+    
+    #interDef{
+        height: 100%;
+        margin-bottom: 40px;
+    }
+    
+    .h100{
+        height: 100%;
+    }
+    
+    
+    #interEx{
+        height: 90%;
+        margin-bottom: 20px;
+    }
+    
+    #g2well{
+        height: 100%;
+        width: 100%;
+    }
+    .shadwell{
+        box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        overflow: auto;
+    }
+    #homeDef{
+        display: none;
+    }
+    #interanimation{
+        width: 55%;
+        height: 70%;
+        position: absolute;
+        top: 50%;
+ 
+        max-width: 400px;
+        transform: translate(-0%, -50%);
+        
+    }
+    hr {
+        border:none;
+        border-top:2px dotted #000;
+        color:rgba(0,0,0,0);
+        background-color: rgba(0,0,0,0);
+        height:1px;
+        width:100%;
+        position: relative;
+        top: 140px;
+        
+}
+    #animdesc{
+       
+       
+        text-align: right;
+        font-size: 24px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+        margin-right: 20px;
+    }
+    
+    #exEq .MathJax{
+      
+    }
+      .exBtn{
+        display: block;
+        width: 80%;
+        margin-bottom: 10px;
+        margin-left: calc(50% - 40%);
+
+    }
+    
+
+    
+    #textWell .MathJax_Display {
+        text-align: center !important;
+     
+    }
+    
+</style>
+
+
+<div id="interMain" class="fadeIn animated">
+
+<div class="page-header">
+         <div id="charakterystykametody"></div>  
+    <h2 class="text-center subpageTitle">Co to jest interpolacja ?</h2>
+ 
+</div>
+    
+
+<div ng-controller="InterDefController as incon" id="interDef" class="row" ui-view>
+        <div class="col-md-7 col-sm-7 h100">
+            <div id="graphWell" class="well shadwell" style="position: relative;">
+                
+                <img id="interanimation" ng-show="showingAnim" src="assets/Spring.gif"/>
+                <div id="animdesc" ng-show="showingAnim">
+                    <p><b><i>b</i></b> : $x_b$, $t_b$</p>
+                    <p><b><i>r</i></b> : $x_r=0$, $t_r=?$</br>stan równowagi </p>
+                    <p><b><i>a</i></b> : $x_a$, $t_a$</p>
+                </div>
+                
+                <div ng-hide="showingAnim" id="box" class="gbox"></div> 
+            </div>
+
+            <p id="result" class="contentText"></p>
+        </div>
+        <div class="col-md-5 col-sm-5" style="height: 100%;">
+            <div id="textWell" class="well shadwell">
+                <p id="text" class="contentText">
+                    
+                </p>
+                <div class="row">
+                    <div id="r1" class="col-md-6">
+                        
+                    </div>
+                    <div id="r2" class="col-md-6">
+                        
+                    </div>
+                </div>
+            </div>
+            <div id="bar1" style="margin-bottom: 10px;"></div>
+            <div id="interNav">
+                <button id="prev" class="btn btn-primary"><span class="glyphicon glyphicon-chevron-left"></span> Wstecz</button>
+                <button id="next" class="btn btn-primary">Dalej <span class="glyphicon glyphicon-chevron-right"></span></button>
+            </div>
+        </div>
+</div>
+    
+<h2 class="text-center" style="margin-top: 50px; margin-bottom: 15px;">Prezentacja działania metody</h2>
+<div ng-controller="InterExampleController" id="interEx" ui-view>
+    <div class="row" style="height: 100%;">
+        <div id="prezentacjadzialaniametody"></div>
+        <div class="col-md-7 col-xs-7 h100">
+            <div id="g2well" class="well shadwell">
+                <div id="graph2" class="gbox"></div>   
+            </div>
+        </div>
+        <div class="col-md-5 col-xs-5 h100">
+            <div class="well shadwell" style="height: 100%;">
+                <p id="exInstruction" class="contentText" style="margin-bottom: 60px; text-indent: 1.0em;">Niniejsza opcja pozwala na realizację obliczeń metodą interpolacji wielomianowej oraz na obserwację ich efektów w postaci wzoru oraz wykresu wielomianu interpolacyjnego. <br>&nbsp;&nbsp;W prezentowanym obok układzie współrzędnych istnieje możliwość deklaracji liczby  węzłów (maksymalnie 7), a także regulowania ich położeniem. Węzły interplacji można przesuwać za pomocą myszki, zaś po najechaniu kursorem na dany węzeł można odczytać wartości jego współrzędnych. Pierwsza wartość to współrzędna na osi $x$, druga - na osi $y$. Istniejące węzły mozna usuwać lub dodawać nowe za pomocą odpowiednich przycisków. </br>Obliczenie wielomianu dla ustalonej konfiguracji węzłów jest możliwe po wybraniu opcji <b>Rozwiąż</b>. </br> Aby obliczyć wielomian dla nowej konfiguracji węzłów należy wybrać <b>Czyść</b>. Wykres można przesuwać lub powiększać za pomocą odpowiednich przycisków, znajdujących się w prawym dolnym rogu układu współrzędnych.  </p>
+                
+                <div id="exButtons">
+                        <button id="addPoint" class="btn btn-success exBtn">Dodaj węzeł</button>
+                        <button id="removePoint" class="btn btn-danger exBtn">Usuń węzeł</button>
+                        <button id="solveBtn" class="btn btn-primary exBtn">Rozwiąż</button>
+                        <button id="clearFnc" class="btn btn-default exBtn">Czyść</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="exEqShowRow" class="row" style="margin-top: 20px; display: none;">
+        <div class="col-md-12" style="height: 100%;">
+            <div class="well shadwell" style="height: 100%;">
+                <p id="exEq" class="contentText" style="text-align: left;"></p>
+                    
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+</div> 
+
+<script type="text/javascript" src="js/libs/math.min.js"></script>
+<script type="text/javascript" src="js/libs/stepAnim.js"></script>
+<script type="text/javascript" src="partials/interpolacja/wykres2.js"></script>
+
+

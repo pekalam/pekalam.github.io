@@ -1,0 +1,205 @@
+<style>
+    #contCol{
+        background-color: rgb(201,201,201);
+        background-image: none;
+        height: 100%;
+        overflow: auto;
+    }
+    #nlinMain{
+        height: 100%;
+    }
+    #ndef{
+        height: 100%;
+       
+    }
+    .gbox{
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    .vertCent{
+        position: absolute;   
+        width: 50%;
+        top: 50%;                        
+        transform: translate(0, -50%);
+    }
+    #mathPrev{
+        margin-top: 40px;
+    }
+    #mathPrev .MathJax{
+        font-size: 55px;
+    }
+    #mathEditor{
+        width: 100%; height: 40px; font-size: 2em;
+    }
+    #homeDef{
+        display: none;
+    }
+    
+    .shadwell{
+        box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        overflow: auto;
+    }
+    .MathJax_Display {
+        text-align: center !important;
+     
+    }
+    
+    
+    .argTable th, td {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        padding: 5px;
+    }
+    .argTable {
+        margin-top: 8px;
+    }
+    .argInput{
+        font-weight: 600;
+    }
+</style>
+
+<div id="nlinMain">
+    <div id="charakterystykazagadnienia"></div>
+    <div class="page-header">
+        
+        <h2 class="text-center subpageTitle">Charakterystyka zagadnienia</h2>
+        
+    </div>
+    <ui-view id="ndef" ng-controller="NlinearDefController as ndef">
+        <div style="height: 75%;">
+            <div class="row" style="height: 100%;">
+                <div id="nlinTeo" class="col-md-12 col-sm-12" style="height: 100%;">
+                    <div class="well shadwell" style="height: 100%; overflow: auto;">
+                        <p id="charText" class="contentText" style="text-indent: 1.0em;"></p>
+                    </div>
+                </div>
+                
+                
+                    <div class="col-md-6 col-sm-6 rozwStep" style="height: 100%;">
+                        <div id="defbrd" class="well shadwell" style="height: 100%;">
+                            <div id="nlinbox" class="gbox"></div>    
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 rozwStep" style="height: 100%;">
+                        <div class="well shadwell" style="height: 100%; overflow: auto;">
+                            <p id="ndefText" style="text-indent: 1.0em;" class="contentText"></p>
+                        </div>
+                        
+                    </div>
+              
+                
+            </div>
+            
+        </div>
+        <div id="bar1" style="margin-top: 10px;"></div>
+        <div class="text-center" style="margin-top: 10px;">
+            <button class="btn btn-primary" id="prev" ng-click="ndef.prev()"><span class="glyphicon glyphicon-chevron-left"></span> Wstecz</button>
+            <button class="btn btn-primary" id="next" ng-click="ndef.next()">Dalej <span class="glyphicon glyphicon-chevron-right"></span></button>
+        </div>
+        
+        
+        
+        
+        
+        <div id="animacja"></div>
+        <h2 class="text-center" style="margin-top: 100px;" ng-hide="animStarted">Animacja metody</h2>
+        <h2 class="text-center" style="margin-top: 100px;" ng-show="animStarted" id="animCycle">Cykl 1</h2>
+        <div style="height: 70%;">
+            <div class="row" style="height: 100%;">
+
+                <div class="col-md-2 col-sm-1"></div>
+                <div class="col-md-8 col-sm-10" style="height: 100%;">
+                    <div id="defbrd2" class="well shadwell" style="height: 100%;">
+                        <div id="nlinbox2" class="gbox"></div>
+                    </div>
+                    
+                </div>  
+                <div class="col-md-2 col-sm-1">
+                    
+                </div>
+
+            </div> 
+            
+        </div>
+        <div class="text-center" style="margin-top: 15px;">
+        <button class="btn btn-primary" ng-hide="animStarted" ng-click="startAnim()">Rozpocznij animację</button>
+        </div>
+    </ui-view>
+    
+    
+    <h2 class="text-center" style="margin-top: 100px;">Rozwiąż równanie</h2>
+    
+    
+    <ui-view id="nex" ng-controller="NlinearExController as nex">
+        <div id="rozwiazrownanie"></div>
+        <div style="height: 60%;">
+            <div class="col-md-12" style="height: 100%;">
+                
+                    <div class="row" style="height: 100%;">
+                        <div id="eqEdit" class="well shadwell" style="height: 100%; overflow: auto;">
+                            
+                        <div id="editor">
+                                <div>
+                                    <p class="contentText" style="text-indent: 1.0em">Niniejsza opcja pozwala na rozwiązywanie równań nieliniowych metodą bisekcji oraz obserwację poszczególnych faz obliczeniowych. <br>Proces rozwiązywania należy poprzedzić wprowadzeniem danych w postaci równania $f(x)=0$, przedziału ufności $[a, b]$ oraz dokładności $\epsilon$. Zasady wprowadzania równań opisane są w instrukcji. <a ng-click="showInstr()" style="cursor: pointer;">Zobacz instrukcję edytora równania</a></p>
+                                    <br>
+                                    <h4 class="text-center">Podaj lewą stronę równania $f(x)=0$</h4>
+                                        <input id="mathEditor" type="text" ng-model="eq" ng-change="changeEq(eq)"/>
+                                        <table style="width: auto;" class="argTable">
+                                            <tr>
+                                                <th class="text-center">Podaj $\epsilon $</th>
+                                                <th class="text-center">Podaj $a$</th>
+                                                <th class="text-center">Podaj $b$</th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input class="argInput" ng-model="eps" ng-change="changeVal('eps', eps)" type="text"/>
+                                                </td>
+                                                <td>
+                                                    <input class="argInput" ng-model="a" ng-change="changeVal('a', a)" type="text"/>
+                                                </td>
+                                                <td>
+                                                    <input class="argInput" ng-model="b" ng-change="changeVal('b', b)" type="text"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                        <p class="text-center" id="mathPrev"></p>
+                                    <!--<button ng-click="convertEq(eq)">Test</button> -->
+                                    
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary" style="float: right;" ng-click="showSolution()">Zobacz rozwiązanie</button>
+                                </div>
+                        </div>
+                            
+                            
+                                <div id="solution" style="height: 100%;">
+                                    <div class="col-md-8" style="height: 100%;">
+                                        <div id="nexbox" class="gbox"></div> 
+                                    </div>
+                                    <div class="col-md-4" style="height: 100%; position: relative;">
+                                        <div>
+                                            <p id="exInfo" class="contentText"></p>
+                                        </div>
+                                        
+                                            <p class="contentText" id="x"></p>
+                                        <div style="position: absolute; bottom: 0; left: 0; padding-left: 15px;">  
+                                            <button class="btn btn-primary" style="display: inline;" ng-click="hideSolution()">Wróć</button>
+                                            <button class="btn btn-primary" style="display: inline;" ng-hide="animStarted" ng-click="repeatAnim()">Powtórz aniamcję</button>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                
+                
+            </div>
+        </div>
+    </ui-view>
+    
+
+    
+</div>

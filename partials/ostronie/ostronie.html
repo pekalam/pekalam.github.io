@@ -1,0 +1,78 @@
+<style>
+#contCol{
+        background-color: rgb(201,201,201);
+        background-image: none;
+        height: 100%;
+        overflow: auto;
+    }
+    #homeDef{
+        display: none;
+    }
+    .shadwell{
+        box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+    .browserImg{
+        height: auto;
+        width: 50px;
+        display: inline;
+        text-align: center;
+        
+    }
+    .imgCont{
+        margin-bottom: 40px;
+        margin-top: 40px;
+    }
+    .imT{
+        display: inline;
+        margin-left: 20px;
+    }
+</style>
+
+<div ng-controller="AboutController as acont">
+    <div class="page-header">
+        <h2 class="text-center subpageTitle">O stronie</h2>
+        
+    </div>
+
+    <div class="well shadwell">
+        <p class="contentText" style="text-indent: 1.0em">Niniejsza strona internetowa jest poświęcona tematyce metod numerycznych. W ramach utworzonej aplikacji zaprezentowano podstawowe zagadnienia teoretyczne dotyczące wybranych metod numerycznych, związanych z interpolacją, rozwiązywaniem równań nieliniowych, rozwiązywaniem układów równań liniowych oraz obliczaniem całek oznaczonych. Zamieszczone treści teoretyczne dedykowane są dla osób, które chciałyby poznać podstawy tej dziedziny matematyki. <br>&nbsp;&nbsp;Wydaje się, iż dużą pomocą w zrozumieniu tych zagadnień są dołączone wizualizacje działania metod. Ponadto wykonane zostały moduły, pozwalające użytkownikom serwisu na realizację własnych obliczeń numerycznych przy użyciu wszystkich prezentowanych metod.</p>
+        <p class="contentText">Aplikacja jest kompatybilna z następującymi przeglądarkami: </p>
+        <div class="imgCont">
+            <div><img src="assets/Google-Chrome-icon.png" class="browserImg"/><p class="contentText text-center imT">Google Chrome</p></div>
+            <br>
+            <div><img src="assets/Opera-icon.png" class="browserImg"/><p class="contentText text-center imT">Opera</p></div>
+            <br>
+            <div><img src="assets/Firefox-icon.png" class="browserImg"/><p class="contentText text-center imT">Mozilla Firefox</p></div>
+            
+        </div>
+        <p class="contentText" style="text-indent: 0em;">Zaleca się korzystanie ze strony na monitorze o rozdzielczości większej niż 1280x1024. Aplikacja nie jest przystosowana do działania na urządzeniach mobilnych.</p>
+        <p class="contentText" style="text-indent: 0em;">Do realizacji niniejszej strony użyto niekomercyjnego oprogramowania oraz technologii wymienionych poniżej:</p>
+    
+        <ul>
+            <li class="contentText">Edytor <i>Brackets</i> <a target="_blank" href="http://brackets.io/">http://brackets.io/</a></li>
+            <li class="contentText">Edytor <i>Gimp</i> <a target="_blank" href="https://www.gimp.org/">https://www.gimp.org/</a></li>
+            <li class="contentText">Lista użytych bibliotek:</li>
+                <ul>
+                    <li class="contentText"><i>AngularJS</i> <a target="_blank" href="https://angularjs.org/">https://angularjs.org/</a></li>
+                    <li class="contentText"><i>AngularUI Router</i> <a target="_blank" href="https://travis-ci.org/angular-ui/ui-router">https://travis-ci.org/angular-ui/ui-router</a></li>
+                    <li class="contentText"><i>Bootstrap</i> <a target="_blank" href="http://getbootstrap.com/">http://getbootstrap.com/</a></li>
+                    <li class="contentText"><i>jQuery</i> <a target="_blank" href="https://jquery.com/">https://jquery.com/</a></li>
+                    <li class="contentText"><i>mathjs</i> <a target="_blank" href="http://mathjs.org/">http://mathjs.org/</a></li>
+                    <li class="contentText"><i>animate.css</i> <a target="_blank" href="https://github.com/daneden/animate.css/">https://github.com/daneden/animate.css/</a></li>
+                    <li class="contentText"><i>JSXGraph</i> <a target="_blank" href="http://jsxgraph.uni-bayreuth.de/wp/">http://jsxgraph.uni-bayreuth.de/wp/</a></li>
+                    <li class="contentText"><i>MathJax</i> <a target="_blank" href="https://www.mathjax.org/">https://www.mathjax.org/</a></li>
+                    <li class="contentText"><i>Smoke</i> <a target="_blank" href="https://github.com/alfredobarron/smoke">https://github.com/alfredobarron/smoke</a></li>
+                </ul>
+        </ul>
+        <div class="contentText">Niektóre obrazy użyte w sekcji "Menu główne" (<a href="/" target="_blank">link do sekcji</a>) oraz animacja w sekcji "Interpolacja wielomianowa" (<a href="/#/inter" target="_blank">link do sekcji</a>) są objęte licencją <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>, pozwalającą na ich rozpowszechnianie oraz niekomercyjny użytek. Pochodzą one z następujących źródeł: <a href="https://www.wikipedia.org/" target="_blank">Wikipedia</a>, <a href="http://mathforum.org/mathimages/index.php/Math_Images:About" target="_blank">Math Images</a> (<a href="http://www.gnu.org/copyleft/fdl.html" target="_blank">GNU GPL</a>), <a href="http://www.freepik.com" target="_blank">Freepik</a>.</div>   
+        <br>
+        <h2 class="subpageTitle text-center">Kilka słów o autorze</h2>
+        <br>
+        <p class="contentText" style="text-indent: 1.0em;">Nazywam się Marek Pękala i jestem uczniem 2 klasy o profilu matematyczno-fizyczno-informatycznym w III Liceum Ogólnokształcącym im. Cypriana Kamila Norwida w Rzeszowie. <br><br>Życzę Wszystkim miłego korzystania z mojej strony internetowej !!!</p>
+        <br><br><br>
+        <p class="contentText">Aplikacja została stworzona na potrzeby konkursu "Zobaczyć matematykę" organizowanego przez <b>Akademię Górniczo-Hutniczą w Krakowie</b>.</p>
+        
+        <br>
+        <p>  Copyright © 2016 Marek Pękala. Wszelkie prawa zastrzeżone.</p>
+    </div>
+</div>

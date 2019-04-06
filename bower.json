@@ -1,0 +1,8 @@
+{
+  "name": "Strona",
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "jQuery": "~2.1.4",
+    "angular-ui-router": "~0.2.15"
+  }
+}
